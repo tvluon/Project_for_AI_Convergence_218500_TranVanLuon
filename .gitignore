@@ -1,6 +1,7 @@
-./results
-./datasets/DAGM
-./datasets/KSDD
-./datasets/KSDD2
-./datasets/STEEL
-./datasets/MVTEC
+./results/
+./datasets/DAGM/
+./datasets/KSDD/
+./datasets/KSDD2/
+./datasets/STEEL/
+./datasets/MVTEC/
+__pycache__/
