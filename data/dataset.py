@@ -72,7 +72,7 @@ class Dataset(torch.utils.data.Dataset):
             elif isinstance(seg_mask_path, list):
                 seg_mask = self.rle_to_mask(seg_mask_path, self.image_size)
             else:
-                seg_mask, _ = self.self.read_label_resize(seg_mask_path, self.image_size)
+                seg_mask, _ = self.read_label_resize(seg_mask_path, self.image_size)
 
             if np.max(seg_mask) == np.min(seg_mask):  # good sample
                 seg_loss_mask = np.ones_like(seg_mask)

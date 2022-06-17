@@ -90,6 +90,13 @@ class Config:
             self.INPUT_CHANNELS = 3
             if self.NUM_SEGMENTED is None:
                 raise Exception("Missing NUM_SEGMENTED for KSDD2 dataset!")
+        elif self.DATASET == 'MVTEC':
+            self.INPUT_WIDTH = 800
+            self.INPUT_HEIGHT = 800
+            self.INPUT_CHANNELS = 1
+            self.ON_DEMAND_READ = True
+            if self.NUM_SEGMENTED is None:
+                raise Exception("Missing NUM_SEGMENTED for KSDD2 dataset!")
         else:
             raise Exception('Unknown dataset {}'.format(self.DATASET))
 

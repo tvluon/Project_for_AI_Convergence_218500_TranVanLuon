@@ -76,7 +76,6 @@ class End2End:
 
         batch_size = self.cfg.BATCH_SIZE
         memory_fit = self.cfg.MEMORY_FIT  # Not supported yet for >1
-
         num_subiters = int(batch_size / memory_fit)
         #
         total_loss = 0
@@ -136,19 +135,16 @@ class End2End:
 
         num_epochs = self.cfg.EPOCHS
         samples_per_epoch = len(train_loader) * self.cfg.BATCH_SIZE
+        samples_per_epoch = len(train_loader) * self.cfg.BATCH_SIZE
 
         self.set_dec_gradient_multiplier(model, 0.0)
 
         for epoch in range(num_epochs):
-            if epoch % 5 == 0:
-                self._save_model(model, f"ep_{epoch:02}.pth")
-
             model.train()
 
             weight_loss_seg, weight_loss_dec = self.get_loss_weights(epoch)
             dec_gradient_multiplier = self.get_dec_gradient_multiplier()
             self.set_dec_gradient_multiplier(model, dec_gradient_multiplier)
-
             epoch_loss_seg, epoch_loss_dec, epoch_loss = 0, 0, 0
             epoch_correct = 0
             from timeit import default_timer as timer
@@ -156,6 +152,8 @@ class End2End:
             time_acc = 0
             start = timer()
             for iter_index, (data) in enumerate(train_loader):
+                self._log(f'Batch {iter_index+1}/{len(train_loader)}')
+
                 start_1 = timer()
                 curr_loss_seg, curr_loss_dec, curr_loss, correct = self.training_iteration(data, device, model,
                                                                                            criterion_seg,
@@ -182,7 +180,9 @@ class End2End:
 
             self._log(
                 f"Epoch {epoch + 1}/{num_epochs} ==> avg_loss_seg={epoch_loss_seg:.5f}, avg_loss_dec={epoch_loss_dec:.5f}, avg_loss={epoch_loss:.5f}, correct={epoch_correct}/{samples_per_epoch}, in {end - start:.2f}s/epoch (fwd/bck in {time_acc:.2f}s/epoch)")
-
+            
+            if epoch % 1 == 0:
+                self._save_model(model, f"ep_{epoch:02}.pth")
             if tensorboard_writer is not None:
                 tensorboard_writer.add_scalar("Loss/Train/segmentation", epoch_loss_seg, epoch)
                 tensorboard_writer.add_scalar("Loss/Train/classification", epoch_loss_dec, epoch)
@@ -336,13 +336,13 @@ class End2End:
         return f"cuda:{self.cfg.GPU}"
 
     def _set_results_path(self):
-        self.run_name = f"{self.cfg.RUN_NAME}_FOLD_{self.cfg.FOLD}" if self.cfg.DATASET in ["KSDD", "DAGM"] else self.cfg.RUN_NAME
+        self.run_name = f"{self.cfg.RUN_NAME}_FOLD_{self.cfg.FOLD}" if self.cfg.DATASET in ["KSDD", "DAGM", "MVTEC"] else self.cfg.RUN_NAME
 
         results_path = os.path.join(self.cfg.RESULTS_PATH, self.cfg.DATASET)
         self.tensorboard_path = os.path.join(results_path, "tensorboard", self.run_name)
 
         run_path = os.path.join(results_path, self.cfg.RUN_NAME)
-        if self.cfg.DATASET in ["KSDD", "DAGM"]:
+        if self.cfg.DATASET in ["KSDD", "DAGM", "MVTEC"]:
             run_path = os.path.join(run_path, f"FOLD_{self.cfg.FOLD}")
 
         self._log(f"Executing run with path {run_path}")

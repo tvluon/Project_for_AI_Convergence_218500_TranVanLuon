@@ -57,7 +57,18 @@ After downloading and extracting the dataset, the file structure should look lik
     ├── test_images
     ├── train.csv
 
-Note that you do not need any images from kaggle test set and can delete test_images folder if you wish.    
+Note that you do not need any images from kaggle test set and can delete test_images folder if you wish.
+
+#### MVTec AD
+After downloading and extracting the dataset, the file structure should look like this:
+
+    MVTEC
+    ├── 1
+    ├── 2
+    ├── 3
+        ...
+
+You have to change the name of subfolders (categories) into number format (1, 2, 3,...)
 
 ### Using on other data
 
