@@ -1,0 +1,90 @@
+<div class="container-fluid d-flex flex-column">
+    {{>header}}
+    <!-- Filters dropdown -->
+
+    <!-- Tags -->
+    {{!-- <div class="tag"></div> --}}
+
+    <!-- Horizontal line -->
+    {{!-- <div class="horizontal-line mt-0 mb-2 bg-secondary"></div> --}}
+
+    <div class="row result-and-checkbox">
+        <!-- img display -->
+        <div class="col-md-9 d-flex flex-column">
+            <!-- Tags -->
+            <div id="tag-holder"></div>
+
+            {{!-- <div class="row flex-row flex-nowrap result-holder"> --}}
+            <div class="result-holder">
+            </div>
+
+        </div>
+
+        {{!-- <div class="vertical-line mx-1 bg-secondary"></div> --}}
+
+        <div class="col-md-3 checkbox-filter-holder">
+            <div class="checkbox-filter-holder-inner row">
+                <div class="checkbox-filter-holder-left col-md-6 d-flex flex-column">
+                    <div class="font-weight-bold w-100 d-flex">
+                        <span>Defect</span>
+                        {{!-- <input type="text" class="filter-search w-100 flex-grow ml-2" placeholder="Search..."> --}}
+                    </div>
+                    <div class="horizontal-line mt-0 mb-2 bg-secondary"></div>
+                    <div class="value-holder" id="object-value-holder">
+                    </div>
+                </div>
+
+                <div class="checkbox-filter-holder-right col-md-6  d-flex flex-column">
+                    <div class="font-weight-bold w-100 d-flex">
+                        <span>Models</span>
+                        {{!-- <input type="text" class="filter-search w-100 flex-grow ml-2" placeholder="Search..."> --}}
+                    </div>
+                    <div class="horizontal-line mt-0 mb-2 bg-secondary"></div>
+                    <div class="value-holder" id="attribute-value-holder">
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="modal fade" id="result-detail-modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Result Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body d-flex flex-column">
+                    <div class="row justify-content-center" id="result-detail-holder">
+                        <div class="col-md-6">
+
+                        </div>
+                        {{!-- <div class="col-md-6 d-flex flex-column justify-content-center align-items-center flex-wrap">
+                        </div> --}}
+                    </div>
+                    {{!-- <div class="horizontal-line mt-2 bg-secondary"></div>
+                    <div class="font-weight-bold text-center w-100">Images of Cluster</div>
+                    <div class="horizontal-line mb-2 bg-secondary"></div>
+                    <div class="row overflow-auto d-flex flex-row flex-nowrap" id="cluster-holder">
+                        <div class="text-center w-100">Loading Cluster...</div>
+                    </div> --}}
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modal-submit-btn">Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- <!-- Horizontal line -->
+    <div class="horizontal-line my-1 bg-secondary"></div>
+
+    <!-- img display -->
+    <div class="row flex-row btn-secondaryflex-nowrap result-holder deleted-result-holder"></div> --}}
+
+</div>

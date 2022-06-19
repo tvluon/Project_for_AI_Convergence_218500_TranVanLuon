@@ -5,3 +5,6 @@
 ./datasets/STEEL/
 ./datasets/MVTEC/
 __pycache__/
+node_modules/
+dataset/
+package-lock.json
